@@ -5,12 +5,7 @@ from typing import Any, TYPE_CHECKING
 
 from . import capture
 
-__all__ = ["string_publisher", "capture"]
-
-
-if TYPE_CHECKING:  # pragma: no cover
-    from . import string_publisher
-
+__all__ = ["capture"]
 
 def __getattr__(name: str) -> Any:
     if name in __all__:

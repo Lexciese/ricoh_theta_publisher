@@ -10,11 +10,11 @@ from sensor_msgs.msg import Image
 from std_msgs.msg import String
 
 
-class SimpleThetaNode(Node):
+class RicohThetaPublisher(Node):
     """Capture frames from a RICOH THETA stream and republish them as ROS images."""
 
     def __init__(self) -> None:
-        super().__init__("simple_theta_node")
+        super().__init__("ricoh_theta_publisher")
 
         pipeline = "thetauvcsrc ! decodebin ! videoconvert ! video/x-raw,format=BGR ! appsink sync=false"
         self.publisher_ = self.create_publisher(Image, "camera360", 10)
@@ -97,7 +97,7 @@ class SimpleThetaNode(Node):
 
 def main(args: list[str] | None = None) -> None:
     rclpy.init(args=args)
-    node = SimpleThetaNode()
+    node = RicohThetaPublisher()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
